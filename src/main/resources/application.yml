@@ -1,0 +1,37 @@
+server:
+  port: 8070
+spring:
+  mvc:
+    view:
+      prefix: /WEB-INF/views/
+      suffix : .jsp
+  servlet:
+    multipart:
+      maxFileSize: 10MB
+      maxRequestSize: 100MB
+  output:
+    ansi:
+      enabled: always
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/jspDemo
+    username: root
+    password:
+  config:
+    import: classpath:application-secret.yml
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+      naming:
+        implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    properties:
+      hibernate:
+        format_sql: true
+        highlight_sql: true
+        use_sql_comments: true
+
+#  thymeleaf:
+#    cache: false
+#    prefix: classpath:/templates/
