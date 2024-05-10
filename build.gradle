@@ -36,6 +36,12 @@ dependencies {
 	// Tomcat 임베디드 Jasper 라이브러리 의존성
 	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
 
+
+	//myBatis
+	testImplementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter-test:3.0.3'
+	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.3'
+
+
 }
 
 tasks.named('test') {

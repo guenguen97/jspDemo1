@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.example.jspDemo1.Member.MemberMapper">
+    <sql id="MemberColumns">
+        id
+        , name
+        , loginID
+        , password
+        , createDate
+        , updateDate
+    </sql>
+
+    <insert id="save" parameterType="com.example.jspDemo1.Member.MemberDTO" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO member (
+        <include refid="MemberColumns" />
+        ) VALUES (
+        #{id}
+        , #{loginID}
+        , #{userPw}
+        , #{userName}
+        , #{email}
+        , 1
+        , Now()
+        , NULL
+        )
+
+    </insert>
+
+    <!-- 회원 정보 수정 -->
+    <update id="update" parameterType="com.example.jspDemo1.Member.MemberDTO">
+        UPDATE member
+        SET
+        updateDate = NOW()
+        , userName = #{userName}
+        , email = #{email}
+
+        <!--        <if test="password != null and password != ''">-->
+        <!--            , password = #{password}-->
+        <!--        </if>-->
+        WHERE
+        id = #{id}
+    </update>
+
+
+    <select id="getByLoginID" parameterType="String" resultType="com.example.jspDemo1.Member.MemberDTO">
+        SELECT
+        <include refid="MemberColumns"/>
+        FROM member
+
+        WHERE
+        ticket = 1
+        AND loginID = #{value}
+
+
+    </select>
+
+    <select id="getMemberByLoginID" parameterType="String" resultType="int">
+        SELECT
+        COUNT(*)
+        FROM
+        member
+        WHERE
+
+        loginID = #{value}
+
+
+
+    </select>
+
+
+
+</mapper>
